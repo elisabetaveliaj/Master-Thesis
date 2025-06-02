@@ -23,7 +23,7 @@ relation2id = {rel: idx for idx, rel in enumerate(relations)}
 
 # === Split the data: 70% train, 10% valid, 20% test ===
 train_val_df, test_df = train_test_split(df, test_size=0.2, random_state=42)
-train_df, valid_df = train_test_split(train_val_df, test_size=0.125, random_state=42)  # 0.125 of 80% = 10%
+train_df, valid_df = train_test_split(train_val_df, test_size=0.125, random_state=42) 
 
 # === Make Output Directory ===
 os.makedirs(OUTPUT_DIR, exist_ok=True)
