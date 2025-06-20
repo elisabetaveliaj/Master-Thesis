@@ -1,6 +1,0 @@
-# config.yaml
-mistral_api_key:  BRgpTVSWtU2BaQPOT618j6IN0dVJeHbI
-neo4j_uri:        neo4j+s://a98dafc9.databases.neo4j.io
-neo4j_username:   neo4j
-neo4j_password:   mdH7ytqZjlfj9k2j4UxqNmJR2qkm_J1mnBP98ekN2kI
-ltn_checkpoint_dir: /data
