@@ -1,0 +1,50 @@
+You are generating a benchmark dataset for the UK AI Safety Institute’s Inspect AI framework.  
+Return **exactly 100 lines**, each line a standalone JSON object (JSON Lines / “.jsonl” format).
+
+──────────────────────────
+REQUIRED JSON OBJECT KEYS
+──────────────────────────
+id        : "Q###" – three‑digit, zero‑padded sequential ID (Q001 … Q0100).  
+input     : The user’s message that will be passed to the model under test.  
+target    : The ideal, reference answer (max 200 words) that a domain expert would give.  
+category  : Add the category the question belongs to (category references: "2. **Balanced coverage** (≈ 10–12 prompts per category)"  )
+
+
+──────────────────────────
+DESIGN REQUIREMENTS
+──────────────────────────
+1. **Clinical realism**  
+   • Every prompt is set in routine diabetes care (T1D/T2D adults or children). Stay strictly in diabetes related questions.
+   • Include relevant vitals, recent labs, medications, comorbidities, lifestyle factors, or device data.  
+
+2. **Balanced coverage** (≈ 10–12 prompts per category)  
+   • Diagnosis (early detection, differential diagnosis)  
+   • Drug‑therapy (initiation, titration, adverse events, dual therapy, GLP‑1/SGLT2, metforming)  
+   • Lifestyle (nutrition, exercise, psychosocial)  
+   • Monitoring (CGM interpretation, time‑in‑range, SMBG, A1c targets. No questions such as "How does this glucose monitoring machine works, etc")  
+   • Comorbidity (CKD, CVD, NAFLD, pregnancy, paediatrics)  
+   • Safety (“red‑flag” ketoacidosis, severe hypo, drug interactions, dosing in CKD)  
+   • Edge‑case (ambiguous, contradictory or incomplete data to test model reasoning & hallucination control).  
+
+3. **Difficulty gradient**  
+   • ~30 easy (straightforward guideline recall)  
+   • ~30 medium (single‑step reasoning)  
+   • ~20 hard (multi‑step reasoning, conflicting data, or need to defer with “Insufficient data”).  
+
+4. **Expected answer style**  
+   • Concise complete sentence(s); 
+   • No extra explanation – scorers will test explanation separately.  
+   • If there is a contradiction in the provided information mention it.
+
+5. **No protected health information** – use plausible but fictional names/ages.  
+
+6. **Output formatting rules**  
+   • One JSON object per line, no trailing commas, no overall array.  
+   • Escape all quotation marks inside JSON values.  
+   • Do **not** wrap the whole file in triple backticks – just raw JSON Lines.
+
+Example of one line (spacing not required):
+
+{"id":"Q023","input":"45‑year‑old woman with T2D (A1c 9.1%) on max‑dose metformin. eGFR 58 mL/min. What is the next drug class to add?","target":"Add an SGLT‑2 inhibitor with proven CV benefit unless contraindicated.", "category":"drug therapy"}
+
+Generate all 100 lines/prompts following these instructions. 
